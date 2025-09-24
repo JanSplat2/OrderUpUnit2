@@ -31,7 +31,7 @@ struct CartView: View {
     }
     
     var totalWithTaxes: Double {
-        totalPrice * 1.085
+        totalPrice * 1.0805
     }
     
     var body: some View {
