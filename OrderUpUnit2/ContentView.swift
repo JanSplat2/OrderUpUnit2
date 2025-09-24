@@ -36,20 +36,43 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    NavigationLink("Cart", destination: CartView(
-                        PeperoniPizzaAdded: $PeperoniPizzaAdded,
-                        MargheritaPizzaAdded: $MargheritaPizzaAdded,
-                        CheesePizzaAdded: $CheesePizzaAdded,
-                        FunghiPizzaAdded: $FunghiPizzaAdded,
-                        CapricciosaPizzaAdded: $CapricciosaPizzaAdded,
-                        PeperoniPizzaPrice: PeperoniPizzaPrice,
-                        MargheritaPizzaPrice: MargheritaPizzaPrice,
-                        CheesePizzaPrice: CheesePizzaPrice,
-                        FunghiPizzaPrice: FunghiPizzaPrice,
-                        CapricciosaPizzaPrice: CapricciosaPizzaPrice
-                    ))
+                    NavigationLink(
+                        destination: CartView(
+                            PeperoniPizzaAdded: $PeperoniPizzaAdded,
+                            MargheritaPizzaAdded: $MargheritaPizzaAdded,
+                            CheesePizzaAdded: $CheesePizzaAdded,
+                            FunghiPizzaAdded: $FunghiPizzaAdded,
+                            CapricciosaPizzaAdded: $CapricciosaPizzaAdded,
+                            PeperoniPizzaPrice: PeperoniPizzaPrice,
+                            MargheritaPizzaPrice: MargheritaPizzaPrice,
+                            CheesePizzaPrice: CheesePizzaPrice,
+                            FunghiPizzaPrice: FunghiPizzaPrice,
+                            CapricciosaPizzaPrice: CapricciosaPizzaPrice
+                        )
+                    ) {
+                        ZStack(alignment: .topTrailing) {
+                            Image(systemName: "cart")
+                                .font(.title2)
+                            let totalItems =
+                            PeperoniPizzaAdded +
+                            MargheritaPizzaAdded +
+                            CheesePizzaAdded +
+                            FunghiPizzaAdded +
+                            CapricciosaPizzaAdded
+                            if totalItems > 0 {
+                                Text("\(totalItems)")
+                                    .font(.caption2)
+                                    .foregroundColor(.white)
+                                    .padding(5)
+                                    .background(Color.red)
+                                    .clipShape(Circle())
+                                    .offset(x: 10, y: -10)
+                            }
+                        }
+                    }
                 }
             }
+
         }
     }
 }
